@@ -32,7 +32,7 @@ def generate_password(length: int, use_uppercase=True,
     return final_password
 
 
-def calculate_entropy(password: str) -> Union[int, float]:
+def calculate_entropy(password: str, decimals: int = 1) -> Union[int, float]:
 
     unique_characters = set(password)
     length_password = len(password)
@@ -52,11 +52,11 @@ def calculate_entropy(password: str) -> Union[int, float]:
 
     entropy = length_password * math.log2(argument_log) if length_password > 0 else 0
 
-    return round(entropy, 1)
+    return round(entropy, decimals)
 
 
 def calculate_decryption_time(entropy: Union[int, float],
-                              decimals=2, attempts_per_second=1e12) -> Union[int, float]:
+                              decimals: int = 2, attempts_per_second=1e12) -> Union[int, float]:
 
     seconds_per_year = 60 * 60 * 24 * 365
 
