@@ -20,6 +20,30 @@ class Generator:
     def length(self, length):
         self._length = length
 
+    @property
+    def generated_password(self):
+        return self._generated_password
+
+    @generated_password.setter
+    def generated_password(self, generated_password):
+        self._generated_password = generated_password
+
+    @property
+    def entropy_of_password(self):
+        return self._entropy_of_password
+
+    @entropy_of_password.setter
+    def entropy_of_password(self, entropy_of_password):
+        self._entropy_of_password = entropy_of_password
+
+    @property
+    def decryption_password_time(self):
+        return self._decryption_password_time
+
+    @decryption_password_time.setter
+    def decryption_password_time(self, decryption_password_time):
+        self._decryption_password_time = decryption_password_time
+
     @staticmethod
     def generate_password(length: int, use_uppercase=True,
                           use_numbers=True, use_punctuations=True) -> str:
@@ -92,8 +116,9 @@ class Generator:
         return generated_password, entropy_of_password, decryption_password_time
 
     def __str__(self):
-        return (f'The password generated is {self._generated_password}, entropy={self._entropy_of_password} '
-                f'and the time necessary to decrypte it is {self._decryption_password_time} years')
+        return (f'The password generated is: {self.generated_password}\n'
+                f'Entropy={self.entropy_of_password}\n'
+                f'The time necessary to decrypte it is {self.decryption_password_time} years')
 
 
 generator = Generator(12)
