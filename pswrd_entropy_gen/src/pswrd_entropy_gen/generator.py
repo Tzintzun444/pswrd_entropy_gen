@@ -48,6 +48,9 @@ class Generator:
     def generate_password(length: int, use_uppercase=True,
                           use_numbers=True, use_punctuations=True) -> str:
 
+        if length <= 0:
+            raise ValueError('The number must be a positive integer')
+
         characters = string.ascii_lowercase
         situations = {'uppercase': (use_uppercase, string.ascii_uppercase),
                       'numbers': (use_numbers, string.digits),
