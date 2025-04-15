@@ -2,23 +2,36 @@ import pytest
 from src.pswrd_entropy_gen.generator import Generator
 
 
-@pytest.mark.parametrize("length, use_uppercase, use_numbers, use_punctuations",
+@pytest.mark.parametrize("length",
                          [
-                             (12, True, True, True),
-                             (-1, True, False, False),
-                             (0, True, True, False),
-                             (17, False, False, False),
-                             ('Hello',),
-                             (12, 'hello', 'hello', 'hello')
+                             12,
+                             -1,
+                             0,
+                             17,
+                             'Hello',
+                             12
                          ])
-def test_generate_password(length, use_uppercase=True,
-                           use_numbers=True, use_punctuations=True):
+def test_create_password(length):
 
-    test_case = Generator.generate_password(length, use_uppercase=use_uppercase,
-                                            use_numbers=use_numbers,
-                                            use_punctuations=use_punctuations)
-    length_expected = len(length)
-    type_expected = str
+    if not isinstance(length, int):
 
-    assert len(test_case) == length_expected
-    assert test_case is str
+        with pytest.raises(Exception):
+
+            Generator.generate_password(length)
+
+    elif length <= 0:
+
+        with pytest.raises(Exception):
+
+            Generator.generate_password(length)
+
+    elif not isinstance(Generator.generate_password(length), str):
+
+        with pytest.raises(Exception):
+
+            Generator.generate_password(length)
+
+    else:
+        test_case = Generator.generate_password(length)
+        assert len(test_case) == length
+        assert isinstance(test_case, str) == True
