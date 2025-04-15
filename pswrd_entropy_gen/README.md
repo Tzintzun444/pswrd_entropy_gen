@@ -21,11 +21,11 @@ from pswrd_entropy_gen import Generator
 
 ## Characteristics
 
-Class 'Generator' creates a password based on the length provided, it receives as a parameter the required length
-of the password, then it creates the password and will return 3 values: First, the 'generated_password', which is 
-the password that was created. Second, the 'entropy_of_password' as its name says, it is the entropy related to the 
-password. And finally, the 'decryption_password_time' that is the time required to crack the password 
-by brute force attack \(theoretically).
+Class 'Generator' creates a password based on the length provided, it receives as a parameter the required length 
+\(integer)of the password, then it creates the password and will return 3 variables: First, the 'generated_password', 
+which is the password that was created. Second, the 'entropy_of_password' as its name says, it is the entropy 
+related to the password. And finally, the 'decryption_password_time' that is the time required to crack the 
+password by brute force attack \(theoretically).
 
 ```python
 class Generator:
@@ -52,6 +52,48 @@ class Generator:
         except Exception as exception:
             return f'There was an error: {exception}'
 ```
+
+### generate_password() function:
+The function has 4 parameters:
++ length:
+It must be a positive integer \(do not exist decimal or negative passwords), it is recommended to be 8 or 
+greater numbers. It is not defined by default.
++ use_uppercase:
+It is a boolean value, it is true by default. This means that is allowed to have at least 1 uppercase letter in
+the password, it may be more than 1.
++ use_numbers:
+Also is a boolean value, true by default. Also means that is allowed to have at least 1 number \(0-9) in the 
+password, it may be more than 1.
++ use_punctuations:
+And finally, it is a boolean value, true by default. Includes at least 1 punctuation character \(.#$%/! for example)
+in the password, also it may be more than 1.
+
+The function uses the 'string' and 'secrets' modules for its functionality. The use of lowercase letters is 
+mandatory, and all parameters by default are in the 'situations' dictionary with their respective characters as a
+value.
+
+ 
+```python
+@staticmethod
+    def generate_password(length: int, use_uppercase=True,
+                          use_numbers=True, use_punctuations=True) -> str:
+
+        if length <= 0:
+            raise ValueError('The number must be a positive integer')
+
+        characters = string.ascii_lowercase
+        situations = {'uppercase': (use_uppercase, string.ascii_uppercase),
+                      'numbers': (use_numbers, string.digits),
+                      'punctuations': (use_punctuations, string.punctuation),
+                      }
+```
+
+
+### calculate_entropy() function:
+
+
+### calculate_decryption_time function:
+
 
 ## Examples
 
