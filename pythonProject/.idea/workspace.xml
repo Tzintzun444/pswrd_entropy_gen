@@ -5,9 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42b6dfad-6aba-4402-833c-6c9e31989c65" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pswrd_entropy_gen/src/pswrd_entropy_gen/generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pswrd_entropy_gen/src/pswrd_entropy_gen/generator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pswrd_entropy_gen/tests/test_module.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pswrd_entropy_gen/tests/test_module.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -42,7 +39,7 @@
     "Python.generator (1).executor": "Run",
     "Python.generator.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "testing",
+    "git-widget-placeholder": "write-readme",
     "ignore.virus.scanning.warn.message": "true"
   }
 }]]></component>
