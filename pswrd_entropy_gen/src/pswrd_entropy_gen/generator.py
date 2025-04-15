@@ -111,12 +111,14 @@ class Generator:
         return round(decryption_time_in_years, decimals)
 
     def create_password(self):
+
         try:
+
             generated_password = self.generate_password(self.length)
             entropy_of_password = self.calculate_entropy(generated_password)
             decryption_password_time = self.calculate_decryption_time(entropy_of_password)
 
-            return str(generated_password), entropy_of_password, decryption_password_time
+            return generated_password, entropy_of_password, decryption_password_time
 
         except Exception as exception:
             return f'There was an error: {exception}'
