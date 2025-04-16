@@ -75,51 +75,51 @@ value.
  
 ```python
 @staticmethod
-    def generate_password(length: int, use_uppercase=True,
-                          use_numbers=True, use_punctuations=True) -> str:
+def generate_password(length: int, use_uppercase=True,
+                      use_numbers=True, use_punctuations=True) -> str:
 
-        if length <= 0:
-            raise ValueError('The number must be a positive integer')
+    if length <= 0:
+        raise ValueError('The number must be a positive integer')
 
-        characters = string.ascii_lowercase
-        situations = {'uppercase': (use_uppercase, string.ascii_uppercase),
-                      'numbers': (use_numbers, string.digits),
-                      'punctuations': (use_punctuations, string.punctuation),
-                      }
+    characters = string.ascii_lowercase
+    situations = {'uppercase': (use_uppercase, string.ascii_uppercase),
+                  'numbers': (use_numbers, string.digits),
+                  'punctuations': (use_punctuations, string.punctuation),
+                  }
 ```
 
 Next, creates the 'password' list, where will be stored all characters of the password. Then, a for loop adds 1 
 character of each of the character types if those are 'True' in the parameters above, this ensures that at least
 1 of each type was added.
 
-```
-password = []
+```python
+    password = []
+    
+    for character_type in situations.values():
 
-        for character_type in situations.values():
+        if character_type[0]:
 
-            if character_type[0]:
-
-                characters += character_type[1]
-                password.append(secrets.choice(character_type[1]))
+            characters += character_type[1]
+            password.append(secrets.choice(character_type[1]))
 ```
 
 After that, the length remaining is calculated and with a list comprehension, the necessary characters are chosen 
 and added in a list, which is joined with our 'password' list.
 
 ```python
-remaining = length - len(password)
-        random_password = [secrets.choice(characters) for _ in range(remaining)]
-        password.extend(random_password)
+    remaining = length - len(password)
+            random_password = [secrets.choice(characters) for _ in range(remaining)]
+            password.extend(random_password)
 ```
 
 Finally, the characters in the list are randomly shuffled and joined as a string.
 
 ```python
-secrets.SystemRandom().shuffle(password)
+    secrets.SystemRandom().shuffle(password)
 
-        final_password = ''.join(password)
+    final_password = ''.join(password)
 
-        return final_password
+    return final_password
 ```
 
 And the password is returned. ¡woohoo!
