@@ -33,7 +33,7 @@ Class 'Generator' creates a password based on the length provided, it receives a
 \(integer)of the password, then it creates the password and will return 3 variables: First, the 'generated_password', 
 which is the password that was created. Second, the 'entropy_of_password' as its name says, it is the entropy 
 related to the password. And finally, the 'decryption_password_time' that is the time required to crack the 
-password by brute force attack \(theoretically).
+password by brute force attack \(theoretically):
 
 ```python
 class Generator:
@@ -117,7 +117,7 @@ def generate_password(length: int, use_uppercase=True,
                   }
 ```
 
-Next, creates the 'password' list, where will be stored all characters of the password. Then, a for loop adds 1 
+Next, creates the 'password' list, here will be stored all characters of the password. Then, a for loop adds 1 
 character of each of the character types if those are 'True' in the parameters above, this ensures that at least
 1 of each type was added.
 
@@ -145,7 +145,7 @@ and added in a list, which is joined with our 'password' list.
     remaining = length - len(password)
     # Selects all necessary characters to complete the password
     random_password = [secrets.choice(characters) for _ in range(remaining)]
-    # Extends the original 'password' list with the list of above.
+    # Extends the original 'password' list with the list above.
     password.extend(random_password)
 ```
 
@@ -164,12 +164,48 @@ And the password is returned. ¡woohoo!
 
 ### calculate_entropy() static method:
 
+The method calculates the entropy in bits of the password, this is useful for calculate the decryption time of the
+password and also shows how much secure is the password.
+
 The method has 2 parameters:
 
 + password:
-This is the password
+This is the password created \(or it can be any password), it must be a string.  
 
 + decimals:
+This parameter defines how many decimals there will be in the entropy \(and if is necessary, round the entropy to 
+that number of decimals). By default, there is 1 decimal.
+
+The method uses the 'math' module to use the logarithm base 2. 
+
+```python
+    @staticmethod
+    def calculate_entropy(password: str, decimals: int = 1) -> Union[int, float]:
+```
+
+First, all characters are stored in a set for avoid repetitive characters, also we need to calculate the length of
+the password. And finally we initialize the variable 'argument_log' as a 0.
+
+```python
+        # The set ensures that we don't take repetitive characters.
+        unique_characters = set(password)
+        # Calculates the length of the password.
+        length_password = len(password)
+        # Initialize the argument of the log base 2.
+        argument_log = 0
+```
+
+Next, the types of characters are stored again in a dictionary called 'situations', the key is the situation and
+the values are the characters and the number of possibilities for each type.
+
+```python
+        # The dictionary stores the possible characters and the number of them.
+        situations = {'uppercase': (string.ascii_uppercase, 26),
+                      'lowercase': (string.ascii_lowercase, 26),
+                      'numbers': (string.digits, 10),
+                      'punctuations': (string.punctuation, 32),
+                      }
+```
 
 ### calculate_decryption_time static method:
 
