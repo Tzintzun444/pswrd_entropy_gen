@@ -121,6 +121,7 @@ class Generator:
             return generated_password, entropy_of_password, decryption_password_time
 
         except Exception as exception:
+
             return f'There was an error: {exception}'
 
     def __str__(self):
@@ -129,6 +130,8 @@ class Generator:
                 f'The time necessary to decrypte it is {self.decryption_password_time} years')
 
 
-generator = Generator(12)
-print(generator)
-print(type(generator.generate_password(12)))
+if __name__ == '__main__':
+
+    generator = Generator(12)
+    print(generator)
+    print(type(generator.generate_password(12)))
