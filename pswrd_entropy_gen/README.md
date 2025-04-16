@@ -38,7 +38,7 @@ class Generator:
         (self._generated_password, self._entropy_of_password,
          self._decryption_password_time) = self.create_password()
     
-    # Call the 3 static methods of the class to create their respective values
+    # Call the 3 static methods of the class to create their respective attributes
     def create_password(self):
         
         try:
@@ -88,6 +88,41 @@ value.
                       }
 ```
 
+Next, creates the 'password' list, where will be stored all characters of the password. Then, a for loop adds 1 
+character of each of the character types if those are 'True' in the parameters above, this ensures that at least
+1 of each type was added.
+
+```
+password = []
+
+        for character_type in situations.values():
+
+            if character_type[0]:
+
+                characters += character_type[1]
+                password.append(secrets.choice(character_type[1]))
+```
+
+After that, the length remaining is calculated and with a list comprehension, the necessary characters are chosen 
+and added in a list, which is joined with our 'password' list.
+
+```python
+remaining = length - len(password)
+        random_password = [secrets.choice(characters) for _ in range(remaining)]
+        password.extend(random_password)
+```
+
+Finally, the characters in the list are randomly shuffled and joined as a string.
+
+```python
+secrets.SystemRandom().shuffle(password)
+
+        final_password = ''.join(password)
+
+        return final_password
+```
+
+And the password is returned. ¡woohoo!
 
 ### calculate_entropy() function:
 
