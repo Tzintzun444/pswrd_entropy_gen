@@ -165,7 +165,7 @@ And the password is returned. ¡woohoo!
 ### calculate_entropy() static method:
 
 The method calculates the entropy in bits of the password, this is useful for calculate the decryption time of the
-password and also shows how much secure is the password.
+password and also shows how much secure is the password. The method uses the 'math' module to use the logarithm base 2. 
 
 The method has 2 parameters:
 
@@ -175,8 +175,6 @@ This is the password created \(or it can be any password), it must be a string.
 + decimals:
 This parameter defines how many decimals there will be in the entropy \(and if is necessary, round the entropy to 
 that number of decimals). By default, there is 1 decimal.
-
-The method uses the 'math' module to use the logarithm base 2. 
 
 ```python
     @staticmethod
@@ -195,7 +193,7 @@ the password. And finally we initialize the variable 'argument_log' as a 0.
         argument_log = 0
 ```
 
-Next, the types of characters are stored again in a dictionary called 'situations', the key is the situation and
+Next, the character types are stored again in a dictionary called 'situations', the key is the situation and
 the values are the characters and the number of possibilities for each type.
 
 ```python
@@ -206,6 +204,22 @@ the values are the characters and the number of possibilities for each type.
                       'punctuations': (string.punctuation, 32),
                       }
 ```
+
+We use a for loop to verify if 1 \(or more, but only need 1 for this verification) character of each type is in the 
+password, and if it is, we add to the argument the number of possible characters of the type.
+
+```python
+        for character_type, posibilities in situations.values():
+
+            if any(character in character_type for character in unique_characters):
+
+                argument_log += posibilities
+```
+
+Finally, we calculate entropy using the next formula:
+
+
+
 
 ### calculate_decryption_time static method:
 
