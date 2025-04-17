@@ -311,6 +311,9 @@ Finally, we return the time rounded to the indicated decimals at the beginning o
 
 ## Contributions
 
+I'm open and happy to receive any input or contribution to the project. You can submit a pull request, 
+report a bug, and add new features without any problems!
+
 ## License
 
 This project was made under the MIT license:
