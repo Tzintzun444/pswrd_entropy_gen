@@ -313,6 +313,9 @@ Finally, we return the time rounded to the indicated decimals at the beginning o
 
 ## License
 
+This project was made under the MIT license:
+[MIT License](https://github.com/Tzintzun444/pswrd_entropy_gen/blob/write-readme/pswrd_entropy_gen/LICENSE.txt)
+
 ## Credits
 
 + Author: Alfredo Tzintzun.
