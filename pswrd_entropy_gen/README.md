@@ -285,7 +285,7 @@ After that, we calculate how many combinations are possible with the entropy rec
 
 Next, we calculate the decryption time based on the following formula, where:
 
-![Decryption_time_formula]()
+![Decryption_time_formula](https://github.com/Tzintzun444/pswrd_entropy_gen/blob/write-readme/decryption_time_formula.png)
 
 + T: Represents the decryption time in years.
 + H: Represents the password entropy.
