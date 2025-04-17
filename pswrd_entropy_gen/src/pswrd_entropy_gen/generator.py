@@ -131,6 +131,6 @@ class Generator:
 
 if __name__ == '__main__':
 
-    generator = Generator(12)
+    generator = Generator.generate_password(18, use_uppercase=False,
+                                            use_punctuations=False)
     print(generator)
-    print(type(generator.generate_password(12)))
