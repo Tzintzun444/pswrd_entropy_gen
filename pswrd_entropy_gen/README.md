@@ -309,3 +309,16 @@ Finally, we return the time rounded to the indicated decimals at the beginning o
 
 1. 
 
+## Contributions
+
+## License
+
+## Credits
+
++ Author: Alfredo Tzintzun.
+
++ External libraries used:
+    - secrets.
+    - string.
+    - math.
+    - typing.
