@@ -209,17 +209,32 @@ We use a for loop to verify if 1 \(or more, but only need 1 for this verificatio
 password, and if it is, we add to the argument the number of possible characters of the type.
 
 ```python
+        # Separates the characters of the number of possible characters.
         for character_type, posibilities in situations.values():
-
+            
+            # Checks that a character of the specified type appears at least once,
+            # this means that the character type is allowed in the password.
             if any(character in character_type for character in unique_characters):
-
+                
+                # If it is true, sums the number of possible characters to the argument of the log.
                 argument_log += posibilities
 ```
 
-Finally, we calculate entropy using the next formula:
+Finally, we calculate entropy using the next formula :
 
+![Entropy formula](https://github.com/Tzintzun444/pswrd_entropy_gen/blob/write-readme/entropy_formula.png)
 
+And return the entropy rounded to the defined decimals at the beginning of the method.
 
+```python
+        # Using the previous formula, we verify the formula is not empty.
+        entropy = length_password * math.log2(argument_log) if length_password > 0 else 0
+        
+        # Finally, we return the entropy rounded to the indicated decimals.
+        return round(entropy, decimals)
+```
+
+¡And that's all!
 
 ### calculate_decryption_time static method:
 
