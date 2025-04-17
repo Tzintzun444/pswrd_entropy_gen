@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42b6dfad-6aba-4402-833c-6c9e31989c65" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../pswrd_entropy_gen/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../pswrd_entropy_gen/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -33,22 +34,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python tests.Python tests for test_module.test_generate_password.executor": "Run",
-    "Python.generator (1).executor": "Run",
-    "Python.generator.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "write-readme",
-    "ignore.virus.scanning.warn.message": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python tests.Python tests for test_module.test_generate_password.executor&quot;: &quot;Run&quot;,
+    &quot;Python.generator (1).executor&quot;: &quot;Run&quot;,
+    &quot;Python.generator.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;write-readme&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\alfre\Documentos\Cursos Desarrollo Web\Proyectos\pswrd_entropy_gen\pswrd_entropy_gen\src" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Python tests for test_module.test_generate_password">
+  <component name="RunManager" selected="Python.generator (1)">
     <configuration name="generator (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="pswrd_entropy_gen" />
       <option name="ENV_FILES" value="" />
@@ -110,8 +111,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Python tests for test_module.test_generate_password" />
         <item itemvalue="Python.generator (1)" />
+        <item itemvalue="Python tests.Python tests for test_module.test_generate_password" />
         <item itemvalue="Python.generator" />
       </list>
     </recent_temporary>

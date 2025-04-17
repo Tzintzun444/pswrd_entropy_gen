@@ -307,89 +307,98 @@ Finally, we return the time rounded to the indicated decimals at the beginning o
 
 ## Examples
 
-# create_password() instance method:
+### create_password() instance method:
 
 + Default use:
 
-In this case, we will use the default performance of the method \(this means all types of characters are allowed), 
-we need a password with 12 characters:
+  In this case, we will use the default performance of the method \(this means all types of characters are allowed), 
+  we need a password with 12 characters:
+  
+  ```python
+  pswrd_generator = Generator.create_password(12) # The password length is 12 characters
+  # output: UbMlRi^N5)4, 78.7, 15568.76
+  ```
 
-```python
-pswrd_generator = Generator.create_password(12) # The password length is 12 characters
-# output: UbMlRi^N5)4, 78.7, 15568.76
-```
-
-# generate_password() static method:
+### generate_password() static method:
 
 All the following passwords will have 18 characters.
 
 + Default use:
 
-As we saw before, we will generate the password with the default performance of the method.
-
-```python
-# This is the needed password.
-generated_password = Generator.generate_password(18)
-# output: `1ND%q#h2tOC:4'F]8 
-```
+  As we saw before, we will generate the password with the default performance of the method.
+  
+  ```python
+  # This is the needed password.
+  generated_password = Generator.generate_password(18)
+  # output: `1ND%q#h2tOC:4'F]8 
+  ```
 
 + Password without punctuation:
 
-Now, the password does not allow punctuation characters \(or, as the same way, lower and uppercase letters and 
-digits are allowed):
-
-```python
-# This is the needed password.
-generated_password = Generator.generate_password(18, use_punctuations=False)
-# output: 6dVf1UKHUHOq0RSEUL 
-```
+  Now, the password does not allow punctuation characters \(or, as the same way, lower and uppercase letters and 
+  digits are allowed):
+  
+  ```python
+  # This is the needed password.
+  generated_password = Generator.generate_password(18, use_punctuations=False)
+  # output: 6dVf1UKHUHOq0RSEUL 
+  ```
 
 + Password without digits:
 
-Now, the password does not allow digits \(or, as the same way, lower and uppercase letters and 
-punctuation characters are allowed):
-
-```python
-# This is the needed password.
-generated_password = Generator.generate_password(18, use_numbers=False)
-# output: vf?CE'uu;W&~Sw^jhD 
-```
+  Now, the password does not allow digits \(or, as the same way, lower and uppercase letters and 
+  punctuation characters are allowed):
+  
+  ```python
+  # This is the needed password.
+  generated_password = Generator.generate_password(18, use_numbers=False)
+  # output: vf?CE'uu;W&~Sw^jhD 
+  ```
 
 + Password without uppercase letters:
 
-Now, the password does not allow uppercase letters \(or, as the same way, lowercase letters, digits and 
-punctuation characters are allowed):
-
-```python
-# This is the needed password.
-generated_password = Generator.generate_password(18, use_uppercase=False)
-# output: &3_4]}[u991!43+m4t
-```
+  Now, the password does not allow uppercase letters \(or, as the same way, lowercase letters, digits and 
+  punctuation characters are allowed):
+  
+  ```python
+  # This is the needed password.
+  generated_password = Generator.generate_password(18, use_uppercase=False)
+  # output: &3_4]}[u991!43+m4t
+  ```
 
 + Password with only lowercase letters: 
 
-Finally, the password only allows lowercase letters:
-
-```python
-# This is the needed password.
-generated_password = Generator.generate_password(18, use_uppercase=False, 
-                                                 use_punctuations=False, use_numbers=False)
-# output: ytvyyzlfnamurebtoh
-```
+  Finally, the password only allows lowercase letters:
+  
+  ```python
+  # This is the needed password.
+  generated_password = Generator.generate_password(18, use_uppercase=False, 
+                                                   use_punctuations=False, use_numbers=False)
+  # output: ytvyyzlfnamurebtoh
+  ```
 
 + Combined situations: 
 
-In this case, the password allows lowercase letters and digits, but does not allow uppercase letters
-and punctuation characters:
+  In this case, the password allows lowercase letters and digits, but does not allow uppercase letters
+  and punctuation characters:
+  
+  ```python
+  # This is the needed password.
+  generated_password = Generator.generate_password(18, use_uppercase=False, 
+                                                   use_punctuations=False)
+  # output: ou0h92pj1cwqe8ny02
+  ```
 
-```python
-# This is the needed password.
-generated_password = Generator.generate_password(18, use_uppercase=False, 
-                                                 use_punctuations=False)
-# output: ou0h92pj1cwqe8ny02
-```
+### calculate_entropy() static method:
 
-# calculate_entropy() static method:
+We will use the passwords generated above for these examples.
+
++ Default use:
++ Password without punctuation:
++ Password without digits:
++ Password without uppercase letters:
++ Password with only lowercase letters: 
+
 
 ## Contributions
 
