@@ -49,7 +49,7 @@ class Generator:
          self._decryption_password_time) = self.create_password()
 ```
 
-### create_password instance method:
+### create_password() instance method:
 
 This is the main method of the class, it uses the other 3 methods to create a password, calculate its entropy in 
 bits and finally calculate how much time is necessary to crack the password.
@@ -78,11 +78,13 @@ bits and finally calculate how much time is necessary to crack the password.
 
 ### generate_password() static method:
 
+The method generates a secure password based on entropy, it ensures that is cryptographically secure and hard to crack,
+while more characters in the password, security grows.
 
 The method has 4 parameters:
 + length:
-It must be a positive integer \(do not exist decimal or negative passwords), it is recommended to be 8 or 
-greater numbers. It is not defined by default.
+It is the length of the password, it must be a positive integer \(do not exist decimal or negative passwords), 
+it is recommended to be 8 or greater numbers. It is not defined by default.
 + use_uppercase:
 It is a boolean value, it is true by default. This means that is allowed to have at least 1 uppercase letter in
 the password, it may be more than 1.
@@ -99,22 +101,22 @@ value.
 
  
 ```python
-@staticmethod
-def generate_password(length: int, use_uppercase=True,
-                      use_numbers=True, use_punctuations=True) -> str:
-    
-    # Ensure that length is a positive integer.
-    if length <= 0:
-        raise ValueError('The number must be a positive integer')
-    
-    # Select the default lowercase characters in the 'characters' variable that contains all the possible characters
-    characters = string.ascii_lowercase
-    # Stores the situations in a dictionary as the key, amd their boolean values and the characters related
-    # as the values.
-    situations = {'uppercase': (use_uppercase, string.ascii_uppercase),
-                  'numbers': (use_numbers, string.digits),
-                  'punctuations': (use_punctuations, string.punctuation),
-                  }
+    @staticmethod
+    def generate_password(length: int, use_uppercase=True,
+                          use_numbers=True, use_punctuations=True) -> str:
+        
+        # Ensure that length is a positive integer.
+        if length <= 0:
+            raise ValueError('The number must be a positive integer')
+        
+        # Select the default lowercase characters in the 'characters' variable that contains all the possible characters
+        characters = string.ascii_lowercase
+        # Stores the situations in a dictionary as the key, amd their boolean values and the characters related
+        # as the values.
+        situations = {'uppercase': (use_uppercase, string.ascii_uppercase),
+                      'numbers': (use_numbers, string.digits),
+                      'punctuations': (use_punctuations, string.punctuation),
+                      }
 ```
 
 Next, creates the 'password' list, here will be stored all characters of the password. Then, a for loop adds 1 
@@ -122,42 +124,42 @@ character of each of the character types if those are 'True' in the parameters a
 1 of each type was added.
 
 ```python
-    # This is the list that stores the characters of the password.
-    password = []
+        # This is the list that stores the characters of the password.
+        password = []
+        
+        # The for loop checks if the situations are True or false.
+        for character_type in situations.values():
     
-    # The for loop checks if the situations are True or false.
-    for character_type in situations.values():
-
-        if character_type[0]:
-            
-            # If the situation is allowed (or its parameter is True) adds the specified characters as possibles for the
-            # password.
-            characters += character_type[1]
-            # Also adds 1 character of each type allowed to ensure that there is at least 1.
-            password.append(secrets.choice(character_type[1]))
+            if character_type[0]:
+                
+                # If the situation is allowed (or its parameter is True) adds the specified characters as possibles for the
+                # password.
+                characters += character_type[1]
+                # Also adds 1 character of each type allowed to ensure that there is at least 1.
+                password.append(secrets.choice(character_type[1]))
 ```
 
 After that, the length remaining is calculated and with a list comprehension, the necessary characters are chosen 
 and added in a list, which is joined with our 'password' list.
 
 ```python
-    # This is the necessary length to complete the password.
-    remaining = length - len(password)
-    # Selects all necessary characters to complete the password
-    random_password = [secrets.choice(characters) for _ in range(remaining)]
-    # Extends the original 'password' list with the list above.
-    password.extend(random_password)
+        # This is the necessary length to complete the password.
+        remaining = length - len(password)
+        # Selects all necessary characters to complete the password
+        random_password = [secrets.choice(characters) for _ in range(remaining)]
+        # Extends the original 'password' list with the list above.
+        password.extend(random_password)
 ```
 
 Finally, the characters in the list are randomly shuffled and joined as a string.
 
 ```python
-    # The 'password' list is shuffled for avoid patterns
-    secrets.SystemRandom().shuffle(password)
-    # Finally, the shuffled characters are joined in a string.
-    final_password = ''.join(password)
-    # Returns the secure password.
-    return final_password
+        # The 'password' list is shuffled for avoid patterns
+        secrets.SystemRandom().shuffle(password)
+        # Finally, the shuffled characters are joined in a string.
+        final_password = ''.join(password)
+        # Returns the secure password.
+        return final_password
 ```
 
 And the password is returned. ¡woohoo!
@@ -242,6 +244,66 @@ And return the entropy rounded to the defined decimals at the beginning of the m
 
 ### calculate_decryption_time static method:
 
+The function calculates how much time a hacker would need \(theoretically) to crack the password, this shows the 
+security involved in the password and indicates if it's a good idea to use the password. 
+
+The function has 3 parameters:
+
++ entropy:
+This is the password entropy, it is needed to calculate how many attempts are necessary to crack the password in a 
+brute force attack, if the entropy is bigger, the necessary attempts will be too. It must be a positive number.
+
++ decimals:
+This defines how many decimals there will be in the time to decrypt the password \(in years). By default, there will be
+2 decimals in the time. It must be a positive integer.
+
++ attempts_per_second:
+
+This is the number of attempts that a hacker can make per second in a brute force attack \(obviously, this is relative),
+but we define it as 1*10^12 attempts per second by default. It must be a positive integer.
+
+```python
+    @staticmethod
+    def calculate_decryption_time(entropy: Union[int, float],
+                                  decimals: int = 2, attempts_per_second=1e12) -> Union[int, float]:
+```
+
+First, we calculate how many seconds are in a year.
+
+```python
+        # Seconds per year = 60 seconds * 60 minutes * 24 hours * 365 days.
+        seconds_per_year = 60 * 60 * 24 * 365
+```
+
+After that, we calculate how many combinations are possible with the entropy received.
+
+```python
+        # These are all the possible combinations of the password, 
+        # therefore, all the possible attempts to crack it.
+        combinations = 2 ** entropy
+```
+
+Next, we calculate the decryption time based on the following formula, where:
+
+![Decryption_time_formula]()
+
++ T: Represents the decryption time in years.
++ H: Represents the password entropy.
++ V: Represents the attempts per second that a hacker can make.
++ S: Represents the seconds in 1 year.
+
+```python
+        # T = 2^H / V * S
+        decryption_time_in_years = combinations / (attempts_per_second * seconds_per_year)
+```
+
+Finally, we return the time rounded to the indicated decimals at the beginning of the method.
+
+```python
+        return round(decryption_time_in_years, decimals)
+```
+
+¡We've finished!
 
 ## Examples
 

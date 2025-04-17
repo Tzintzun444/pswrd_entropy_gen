@@ -105,8 +105,7 @@ class Generator:
         seconds_per_year = 60 * 60 * 24 * 365
 
         combinations = 2 ** entropy
-        decryption_time_in_seconds = combinations / attempts_per_second
-        decryption_time_in_years = decryption_time_in_seconds / seconds_per_year
+        decryption_time_in_years = combinations / (attempts_per_second * seconds_per_year)
 
         return round(decryption_time_in_years, decimals)
 
