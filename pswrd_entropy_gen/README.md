@@ -173,7 +173,7 @@ The method has 2 parameters:
 This is the password created \(or it can be any password), it must be a string.  
 
 + decimals:
-This parameter defines how many decimals there will be in the entropy \(and if is necessary, round the entropy to 
+This parameter defines how many decimals there will be in the entropy \(and if it is necessary, round the entropy to 
 that number of decimals). By default, there is 1 decimal.
 
 ```python
@@ -182,7 +182,7 @@ that number of decimals). By default, there is 1 decimal.
 ```
 
 First, all characters are stored in a set for avoid repetitive characters, also we need to calculate the length of
-the password. And finally we initialize the variable 'argument_log' as a 0.
+the password. And finally we initialize the variable 'argument_log' as 0.
 
 ```python
         # The set ensures that we don't take repetitive characters.
@@ -209,7 +209,7 @@ We use a for loop to verify if 1 \(or more, but only need 1 for this verificatio
 password, and if it is, we add to the argument the number of possible characters of the type.
 
 ```python
-        # Separates the characters of the number of possible characters.
+        # Separates the characters from the number of possible characters.
         for character_type, posibilities in situations.values():
             
             # Checks that a character of the specified type appears at least once,
@@ -220,14 +220,18 @@ password, and if it is, we add to the argument the number of possible characters
                 argument_log += posibilities
 ```
 
-Finally, we calculate entropy using the next formula :
+Finally, we calculate entropy using the next formula, where:
 
 ![Entropy formula](https://github.com/Tzintzun444/pswrd_entropy_gen/blob/write-readme/entropy_formula.png)
+
++ H: Represents the password entropy.
++ L: Represents the password length.
++ n: Represents the total possibilities for each character in the password.
 
 And return the entropy rounded to the defined decimals at the beginning of the method.
 
 ```python
-        # Using the previous formula, we verify the formula is not empty.
+        # Using the previous formula, we calculate its entropy and we verify the formula is not empty.
         entropy = length_password * math.log2(argument_log) if length_password > 0 else 0
         
         # Finally, we return the entropy rounded to the indicated decimals.
