@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pswrd_entropy_gen"
-version = "1.0.0"
+version = "1.0.1"
 authors = [
   { name="Alfredo Tzintzun", email="alfredotzintzun4@gmail.com" },
 ]
@@ -18,7 +18,6 @@ classifiers = [
 ]
 license = {file = "LICENSE.txt"}
 keywords =['password', 'entropy', 'generator', 'cibersecurity', 'cryptography']
-dependencies = ['math', 'string', 'secrets', 'typing']
 
 [tool.setuptools]
 package-dir = { "" = "src" }
