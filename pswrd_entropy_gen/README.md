@@ -394,11 +394,138 @@ All the following passwords will have 18 characters.
 We will use the passwords generated above for these examples.
 
 + Default use:
+  
+  This is the entropy of the password with all types of characters:
+
+  ```python
+  # This is the entropy of the password: `1ND%q#h2tOC:4'F]8
+  entropy = Generator.calculate_entropy("`1ND%q#h2tOC:4'F]8")
+  # output: 118.0
+  ```
+
 + Password without punctuation:
+
+  This is the entropy of the password without punctuation characters:
+
+  ```python
+  # This is the entropy of the password: 6dVf1UKHUHOq0RSEUL
+  entropy = Generator.calculate_entropy("6dVf1UKHUHOq0RSEUL")
+  # output: 107.2
+  ```
+
 + Password without digits:
+
+  This is the entropy of the password without digits:
+
+  ```python
+  # This is the entropy of the password: vf?CE'uu;W&~Sw^jhD
+  entropy = Generator.calculate_entropy("vf?CE'uu;W&~Sw^jhD")
+  # output: 115.1
+  ```
+
 + Password without uppercase letters:
+
+  This is the entropy of the password without uppercase letters:
+
+  ```python
+  # This is the entropy of the password: &3_4]}[u991!43+m4t
+  entropy = Generator.calculate_entropy("&3_4]}[u991!43+m4t")
+  # output: 109.6
+  ```
+
 + Password with only lowercase letters: 
 
+  This is the entropy of the password with only lowercase letters:
+
+  ```python
+  # This is the entropy of the password: ytvyyzlfnamurebtoh
+  entropy = Generator.calculate_entropy("ytvyyzlfnamurebtoh")
+  # output: 84.6
+  ```
+  
++ Combined situations:
+
+  Finally, this is the entropy of the password with lowercase letters and digits allowed:
+
+  ```python
+  # This is the entropy of the password: ou0h92pj1cwqe8ny0
+  generated_password = Generator.calculate_entropy('ou0h92pj1cwqe8ny02')
+  # output: 93.1
+  ```
+
+The entropy of each password is used to calculate its security in a brute force attack.
+
+### calculate_decryption_time() static method:
+
+Again, we will use the passwords and their entropies generated above for these examples. The time calculated is only
+theoretical and is a metric of password security in a brute-force attack:
+
++ Default use:
+  
+  This is the necessary decryption time \(in years) to crack the password with all types of characters:
+
+  ```python
+  # This is the decryption time of the password: `1ND%q#h2tOC:4'F]8
+  # Its entropy is 118.0
+  decryption_password_time = Generator.calculate_decryption_time(118.0)
+  # output: 1.05e+16
+  ```
+
++ Password without punctuation:
+
+  This is the necessary decryption time \(in years) to crack the password without punctuation characters:
+
+  ```python
+  # This is the decryption time of the password: 6dVf1UKHUHOq0RSEUL
+  # Its entropy is 107.2
+  decryption_password_time = Generator.calculate_decryption_time(107.2)
+  # output: 5910000000000.0
+  ```
+
++ Password without digits:
+
+  This is the necessary decryption time \(in years) to crack the password without digits:
+
+  ```python
+  # This is the decryption time of the password: vf?CE'uu;W&~Sw^jhD
+  # Its entropy is 115.1
+  decryption_password_time = Generator.calculate_decryption_time(115.1)
+  # output: 1410000000000000.0
+  ```
+
++ Password without uppercase letters:
+
+  This is the necessary decryption time \(in years) to crack the password without uppercase letters:
+
+  ```python
+  # This is the decryption time of the password: &3_4]}[u991!43+m4t
+  # Its entropy is 109.6
+  decryption_password_time = Generator.calculate_decryption_time(109.6)
+  # output: 1410000000000000.0
+  ```
+
++ Password with only lowercase letters: 
+
+  This is the necessary decryption time \(in years) to crack the password only with uppercase letters:
+
+  ```python
+  # This is the entropy of the password: ytvyyzlfnamurebtoh
+  # Its entropy is 84.6
+  decryption_password_time = Generator.calculate_decryption_time(109.6)
+  # output: 31200000000000.0
+  ```
+  
++ Combined situations:
+
+  Finally, this is the necessary decryption time \(in years) to crack the password with lowercase letters and 
+  digits allowed:
+
+  ```python
+  # This is the entropy of the password: ou0h92pj1cwqe8ny02
+  # Its entropy is 93.1
+  decryption_password_time = Generator.calculate_decryption_time(93.1)
+  # output: 337000000.0
+  ```
 
 ## Contributions
 

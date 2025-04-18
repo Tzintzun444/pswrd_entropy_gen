@@ -107,7 +107,7 @@ class Generator:
         combinations = 2 ** entropy
         decryption_time_in_years = combinations / (attempts_per_second * seconds_per_year)
 
-        return round(decryption_time_in_years, decimals)
+        return float(f'{decryption_time_in_years:.{decimals}e}')
 
     def create_password(self):
 
@@ -131,6 +131,5 @@ class Generator:
 
 if __name__ == '__main__':
 
-    generator = Generator.generate_password(18, use_uppercase=False,
-                                            use_punctuations=False)
+    generator = Generator.calculate_decryption_time(93.1)
     print(generator)
