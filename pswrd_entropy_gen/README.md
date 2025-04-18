@@ -242,7 +242,7 @@ password, and if it is, we add to the argument the number of possible characters
 
 Finally, we calculate entropy using the next formula, where:
 
-![Entropy formula](https://github.com/Tzintzun444/pswrd_entropy_gen/blob/write-readme/entropy_formula.png)
+![Entropy formula](https://github.com/Tzintzun444/pswrd_entropy_gen/blob/images/entropy_formula.png)
 
 + H: Represents the password entropy.
 + L: Represents the password length.
@@ -303,7 +303,7 @@ After that, we calculate how many combinations are possible with the entropy rec
 
 Next, we calculate the decryption time based on the following formula, where:
 
-![Decryption_time_formula](https://github.com/Tzintzun444/pswrd_entropy_gen/blob/write-readme/decryption_time_formula.png)
+![Decryption_time_formula](https://github.com/Tzintzun444/pswrd_entropy_gen/blob/images/decryption_time_formula.png)
 
 + T: Represents the decryption time in years.
 + H: Represents the password entropy.
