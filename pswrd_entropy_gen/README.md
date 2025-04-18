@@ -16,7 +16,7 @@ pip install pswrd_entropy_gen
 Once the package has been installed, import its class "Generator":
 
 ```python
-from pswrd_entropy_gen import Generator
+from pswrd_entropy_gen.generator import Generator
 ```
 
 ## Characteristics
