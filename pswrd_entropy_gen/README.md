@@ -24,10 +24,10 @@ from pswrd_entropy_gen import Generator
 ### Class Generator:
 
 The class 'Generator' has 3 static methods and 1 instance method:
-+ generate_password static method.
-+ calculate_entropy static method.
-+ calculate_decryption_time static method.
-+ create_password instance method.
++ generate_password\() static method.
++ calculate_entropy\() static method.
++ calculate_decryption_time\() static method.
++ create_password\() instance method.
 
 Class 'Generator' creates a password based on the length provided, it receives as a parameter the required length 
 \(integer)of the password, then it creates the password and will return 3 variables: First, the 'generated_password', 
@@ -44,7 +44,8 @@ class Generator:
         
         # This is the length of the password.
         self._length = length
-        # These are the password, its entropy and the time to decrypt it .
+        
+        # These are the password, its entropy and the time to decrypt it.
         (self._generated_password, self._entropy_of_password,
          self._decryption_password_time) = self.create_password()
 ```
@@ -63,16 +64,20 @@ bits and finally calculate how much time is necessary to crack the password.
             
             # Generates the password.
             generated_password = self.generate_password(self.length)
+            
             # Calculates its entropy.
             entropy_of_password = self.calculate_entropy(generated_password)
+            
             # Calculates the time to decrypt it.
             decryption_password_time = self.calculate_decryption_time(entropy_of_password)
             
             # Returns each variable created above.
             return generated_password, entropy_of_password, decryption_password_time
 
+        # If an error happens, this will handle it.
         except Exception as exception:
             
+            # This is the message error.
             return f'There was an error: {exception}'
 ```
 
@@ -101,18 +106,23 @@ value.
 
  
 ```python
+    # This method generates a password based on the characters allowed and the provided length.
     @staticmethod
     def generate_password(length: int, use_uppercase=True,
                           use_numbers=True, use_punctuations=True) -> str:
         
         # Ensure that length is a positive integer.
         if length <= 0:
+          
+            # Message error. 
             raise ValueError('The number must be a positive integer')
         
         # Select the default lowercase characters in the 'characters' variable that contains all the possible characters
         characters = string.ascii_lowercase # abcdefghijklmnopqrstuvwxyz
+        
         # Stores the situations in a dictionary as the key, amd their boolean values and the characters related
         # as the values.
+        
         situations = {'uppercase': (use_uppercase, string.ascii_uppercase), # True, ABCDEFGHIJKLMNOPQRSTUVWXYZ
                       'numbers': (use_numbers, string.digits), # True, 0123456789
                       'punctuations': (use_punctuations, string.punctuation), # True, !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
@@ -135,6 +145,7 @@ character of each of the character types if those are 'True' in the parameters a
                 # If the situation is allowed (or its parameter is True) adds the specified characters as possibles for the
                 # password.
                 characters += character_type[1]
+                
                 # Also adds 1 character of each type allowed to ensure that there is at least 1.
                 password.append(secrets.choice(character_type[1]))
 ```
@@ -145,8 +156,10 @@ and added in a list, which is joined with our 'password' list.
 ```python
         # This is the necessary length to complete the password.
         remaining = length - len(password)
+        
         # Selects all necessary characters to complete the password
         random_password = [secrets.choice(characters) for _ in range(remaining)]
+        
         # Extends the original 'password' list with the list above.
         password.extend(random_password)
 ```
@@ -156,8 +169,10 @@ Finally, the characters in the list are randomly shuffled and joined as a string
 ```python
         # The 'password' list is shuffled for avoid patterns
         secrets.SystemRandom().shuffle(password)
+        
         # Finally, the shuffled characters are joined in a string.
         final_password = ''.join(password)
+        
         # Returns the secure password.
         return final_password
 ```
@@ -179,6 +194,7 @@ This parameter defines how many decimals there will be in the entropy \(and if i
 that number of decimals). By default, there is 1 decimal.
 
 ```python
+    # This method calculates the entropy of the provided password.
     @staticmethod
     def calculate_entropy(password: str, decimals: int = 1) -> Union[int, float]:
 ```
@@ -189,8 +205,10 @@ the password. And finally we initialize the variable 'argument_log' as 0.
 ```python
         # The set ensures that we don't take repetitive characters.
         unique_characters = set(password)
+        
         # Calculates the length of the password.
         length_password = len(password)
+        
         # Initialize the argument of the log base 2.
         argument_log = 0
 ```
@@ -200,10 +218,10 @@ the values are the characters and the number of possibilities for each type.
 
 ```python
         # The dictionary stores the possible characters and the number of them.
-        situations = {'uppercase': (string.ascii_uppercase, 26),
-                      'lowercase': (string.ascii_lowercase, 26),
-                      'numbers': (string.digits, 10),
-                      'punctuations': (string.punctuation, 32),
+        situations = {'uppercase': (string.ascii_uppercase, 26), # ABCDEFGHIJKLMNOPQRSTUVWXYZ, 26
+                      'lowercase': (string.ascii_lowercase, 26), # abcdefghijklmnopqrstuvwxyz, 26
+                      'numbers': (string.digits, 10), # 0123456789, 10
+                      'punctuations': (string.punctuation, 32), # !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~, 32
                       }
 ```
 
@@ -219,7 +237,7 @@ password, and if it is, we add to the argument the number of possible characters
             if any(character in character_type for character in unique_characters):
                 
                 # If it is true, sums the number of possible characters to the argument of the log.
-                argument_log += posibilities
+                argument_log += possibilities
 ```
 
 Finally, we calculate entropy using the next formula, where:
@@ -262,6 +280,7 @@ This is the number of attempts that a hacker can make per second in a brute forc
 but we define it as 1*10^12 attempts per second by default. It must be a positive integer.
 
 ```python
+    # This method calculates the necessary decryption time to crack a password (in years) in a brute-force attack.
     @staticmethod
     def calculate_decryption_time(entropy: Union[int, float],
                                   decimals: int = 2, attempts_per_second=1e12) -> Union[int, float]:
@@ -299,7 +318,8 @@ Next, we calculate the decryption time based on the following formula, where:
 Finally, we return the time rounded to the indicated decimals at the beginning of the method.
 
 ```python
-        return round(decryption_time_in_years, decimals)
+        # Finally, we return the time rounded to the provided decimals.
+        return float(f'{decryption_time_in_years:.{decimals}e}')
 ```
 
 We've finished!
@@ -546,4 +566,4 @@ This project was made under the MIT license:
     - math.
     - typing.
 
-I wish you enjoy this project!
+I hope you enjoy this project!
