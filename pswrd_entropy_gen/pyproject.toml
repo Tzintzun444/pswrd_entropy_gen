@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pswrd_entropy_gen"
-version = "1.0.1"
+version = "1.0.2"
 authors = [
   { name="Alfredo Tzintzun", email="alfredotzintzun4@gmail.com" },
 ]
