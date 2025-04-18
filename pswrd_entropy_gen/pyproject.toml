@@ -20,6 +20,9 @@ license = {file = "LICENSE.txt"}
 keywords =['password', 'entropy', 'generator', 'cibersecurity', 'cryptography']
 dependencies = ['math', 'string', 'secrets', 'typing']
 
+[tool.setuptools]
+package-dir = { "" = "src" }
+
 [project.urls]
 Homepage = "https://github.com/Tzintzun444/pswrd_entropy_gen"
 Issues = "https://github.com/Tzintzun444/pswrd_entropy_gen#readme"
