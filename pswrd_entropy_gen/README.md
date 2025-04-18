@@ -162,7 +162,7 @@ Finally, the characters in the list are randomly shuffled and joined as a string
         return final_password
 ```
 
-And the password is returned. ¡woohoo!
+And the password is returned. Woohoo!
 
 ### calculate_entropy() static method:
 
@@ -240,7 +240,7 @@ And return the entropy rounded to the defined decimals at the beginning of the m
         return round(entropy, decimals)
 ```
 
-¡And that's all!
+And that's all!
 
 ### calculate_decryption_time static method:
 
@@ -258,7 +258,6 @@ This defines how many decimals there will be in the time to decrypt the password
 2 decimals in the time. It must be a positive integer.
 
 + attempts_per_second:
-
 This is the number of attempts that a hacker can make per second in a brute force attack \(obviously, this is relative),
 but we define it as 1*10^12 attempts per second by default. It must be a positive integer.
 
@@ -303,7 +302,7 @@ Finally, we return the time rounded to the indicated decimals at the beginning o
         return round(decryption_time_in_years, decimals)
 ```
 
-¡We've finished!
+We've finished!
 
 ## Examples
 
@@ -546,3 +545,5 @@ This project was made under the MIT license:
     - string.
     - math.
     - typing.
+
+I wish you enjoy this project!
