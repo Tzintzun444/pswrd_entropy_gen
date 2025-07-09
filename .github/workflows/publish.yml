@@ -14,16 +14,20 @@ jobs:
         with:
           python-version: "3.x"
       - name: Install dependencies
-        working-directory: pswrd_entropy_gen
         run: |
+          cd ./pswrd_entropy_gen
           python -m pip install --upgrade pip
           pip install build twine
       - name: Build package
-        working-directory: pswrd_entropy_gen
-        run: python -m build
-      - name: Publish to PyPI
-        working-directory: pswrd_entropy_gen
+        run: |
+          cd ./pswrd_entropy_gen
+          python -m build
+      - name: set env variables 
+        run: cd ./pswrd_entropy_gen
         env:
           TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
-        run: twine upload dist/*
+      - name: Publish to PyPI
+        run: | 
+          cd ./pswrd_entropy_gen
+          twine upload dist/*
