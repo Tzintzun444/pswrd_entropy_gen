@@ -14,7 +14,6 @@ jobs:
         with:
           python-version: "3.x"
       - name: Install dependencies
-        working-directory: pswrd_entropy_gen
         run: |
           python -m pip install --upgrade pip
           pip install build twine
